@@ -1,10 +1,10 @@
 browser.contextMenus.create({
-  id: "url-list-copy-urls",
+  id: "save-tabs-copy-urls",
   title: "Copy URLs (all tabs)",
   contexts: ["tab"],
 });
 browser.contextMenus.onClicked.addListener(function (info, tab) {
-  if (info.menuItemId === "url-list-copy-urls") {
+  if (info.menuItemId === "save-tabs-copy-urls") {
     browser.tabs.query({currentWindow: true}).then((tabs) => {
       // Use active tab for copy to clipboard, so it is possible to open
       // the context menu on inactive tabs. Save clicked tab as fallback.
@@ -44,7 +44,7 @@ browser.contextMenus.onClicked.addListener(function (info, tab) {
       }).catch(function (error) {
         // This could happen if the extension is not allowed to run code in
         // the page, for example if the tab is a privileged page.
-        console.error("Failed to copy text: " + error);
+        console.error("urls-list: Failed to copy text: " + error);
         notifyError();
       });
     });

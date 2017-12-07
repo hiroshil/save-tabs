@@ -1,4 +1,4 @@
-# URLs List
+# Save Tabs URLs with Titles, Restore Later
 
-A Firefox extension to list the URLs of all tabs from the current window as copyable plaintext.
-Also this extension can load a plaintext list of urls to individual tabs.
+Show list the URLs and Titles of all tabs of current browser window as copyable plaintext.
+Also can save this info as plaintext and restore it back later to individual tabs.
