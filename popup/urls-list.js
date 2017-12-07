@@ -21,6 +21,16 @@ function listTabs() {
   });
 }
 
+//https://stackoverflow.com/questions/42274304/is-there-a-list-of-url-schemes
+scheme_list = ["https://", "http://", "file://", "ftps://", "ftp://", "mailto:", "news:", "telnet://"]
+
+function isURL(urlcand){
+  for (let scheme of scheme_list) 
+    if (urlcand.startsWith(scheme))
+     return true;
+  return false;
+}
+
 function open() {
   browser.tabs.query({currentWindow: true}).then((tabs) => {
     // save list of current urls
@@ -28,20 +38,25 @@ function open() {
     for (let tab of tabs) {
       currentUrls.push(tab.url);
     }
+    // take urls from text in extension window
     let linesList = urlText.value.split('\n');
-    // filter out URL lines, ignoring title line[i+0] and empty line[i+2]
-    newUrls = linesList.filter(function(value, lineno, arr) {
-      return (lineno-1) % 3 == 0;
+
+    /* // Currently this step is optional
+    // filter out URL lines, ignoring other lines, like: title line and empty line delimiters
+    newUrls = linesList.filter(function(line) {
+      return isURL(line);
     });
-    for (let url of newUrls) {
-      // only open if new url is not empty string and is not already opened
-      if (url !== '' && currentUrls.indexOf(url) < 0) {
-        // prefix "http://" if it is not an url already
-        if (url.indexOf('://') < 0) {
-          url = 'http://' + url;
-        }
-        browser.tabs.create({url: url});
-      }
+    */
+    newUrls = linesList;
+    for (let newurl of newUrls) {
+      // Open only if line is not empty string, is actually URL, and is not currently opened
+      if ( newurl == "")
+        continue;
+      if (! isURL(newurl) )
+        continue;
+      if ( currentUrls.indexOf(newurl) >= 0 )
+        continue;
+      browser.tabs.create({url: newurl});
     }
   });
 }

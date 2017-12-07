@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
   "name": "Save Tab URLs with Titles, Restore Later",
-  "version": "0.4.0",
+  "version": "0.1.0",
   "description": "Show, save and restore the URLs with Titles of all tabs of current browser window. Show as copyable plaintext. Save and restore from text file.",
-  "homepage_url": "https://github.com/mnba/urls-list",
+  "homepage_url": "https://github.com/mnba/save-tabs",
   "permissions": [
     "activeTab",
     "clipboardWrite",
