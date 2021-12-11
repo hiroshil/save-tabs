@@ -1,14 +1,15 @@
 {
   "manifest_version": 2,
-  "name": "Save Tab URLs with Titles, Restore Later",
+  "name": "Save-Tabs",
   "version": "0.1.1",
   "description": "Show, save and restore the URLs with Titles of all tabs of current browser window. Show as copyable plaintext. Save and restore from text file.",
-  "homepage_url": "https://github.com/mnba/save-tabs",
+  "homepage_url": "https://github.com/hiroshil/save-tabs",
   "permissions": [
     "activeTab",
     "clipboardWrite",
     "contextMenus",
     "notifications",
+    "storage",
     "tabs"
   ],
   "background": {
@@ -16,14 +17,24 @@
       "background.js"
     ]
   },
+  "options_ui": {
+    "page": "options/options.html",
+    "browser_style": true
+  },
   "browser_action": {
     "default_icon": "icons/icon.svg",
     "browser_style": true,
     "default_title": "URLs List",
-    "default_popup": "popup/urls-list.html"
+    "default_popup": "popup/save-tabs.html"
   },
   "icons": {
     "48": "icons/icon.svg",
     "96": "icons/icon.svg"
+  },
+  "browser_specific_settings": {
+  "gecko": {
+    "id": "save-tabs@hiroshil",
+    "strict_min_version": "78.0"
   }
+}
 }

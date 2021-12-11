@@ -1,0 +1,1 @@
+browser.tabs.create({url: `../default.html`}).catch(() => {});
